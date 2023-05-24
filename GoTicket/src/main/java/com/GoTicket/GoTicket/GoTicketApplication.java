@@ -1,4 +1,4 @@
-package com.um.GoTicket;
+package com.GoTicket.GoTicket;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
