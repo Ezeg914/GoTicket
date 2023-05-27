@@ -23,7 +23,9 @@ public class Trip {
     public String getTime() {return time;}
 
     public void setId_trip(Long id_trip) {this.id_trip = id_trip;}
-    public void setDate(String date) {this.date = date;}
+    public void setDate(String date) {
+        this.date = date;
+    }
     public void setTime(String time) {this.time = time;}
     
 }
