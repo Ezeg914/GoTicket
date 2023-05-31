@@ -17,10 +17,6 @@ public class ReservationService implements BaseService<Reservation> {
         return null;
     }
 
-    public Reservation update(Long id, Reservation entity) throws Exception {
-        return null;
-    }
-
     public boolean delete(Long id) throws Exception {
         return false;
     }

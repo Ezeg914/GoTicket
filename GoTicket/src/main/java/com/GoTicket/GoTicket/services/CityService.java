@@ -21,11 +21,6 @@ public class CityService  implements BaseService<City>{
     }
 
     @Override
-    public City update(Long id, City entity) throws Exception {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) throws Exception {
         return false;
     }

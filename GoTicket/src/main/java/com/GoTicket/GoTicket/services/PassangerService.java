@@ -17,10 +17,6 @@ public class PassangerService implements BaseService<Passanger> {
         return null;
     }
 
-    public Passanger update(Long id, Passanger entity) throws Exception {
-        return null;
-    }
-
     public boolean delete(Long id) throws Exception {
         return false;
     }
