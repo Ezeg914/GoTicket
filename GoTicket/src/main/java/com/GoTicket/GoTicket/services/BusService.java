@@ -20,11 +20,6 @@ public class BusService implements BaseService<Bus>{
     }
 
     @Override
-    public Bus update(Long id, Bus entity) throws Exception {
-        return null;
-    }
-
-    @Override
     public boolean delete(Long id) throws Exception {
         return false;
     }
