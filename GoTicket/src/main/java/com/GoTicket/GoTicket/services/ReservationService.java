@@ -1,23 +1,69 @@
 package com.GoTicket.GoTicket.services;
 
 import com.GoTicket.GoTicket.models.Reservation;
+import com.GoTicket.GoTicket.repositories.ReservationRepository;
+import org.springframework.stereotype.Service;
 
+
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
+@Service
 public class ReservationService implements BaseService<Reservation> {
+
+    private ReservationRepository reservationRepository;
+
+    public ReservationService(ReservationRepository reservationRepository) {
+        this.reservationRepository = reservationRepository;
+    }
+
+
+    @Override
+    @Transactional
     public List<Reservation> findAll() throws Exception {
-        return null;
+        try {
+            List<Reservation> models = reservationRepository.findAll();
+            return models;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
+    @Override
+    @Transactional
     public Reservation findById(Long id) throws Exception {
-        return null;
+        try {
+            Optional<Reservation> modelOptional = reservationRepository.findById(id);
+            return modelOptional.get();
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
-    public Reservation save(Reservation entity) throws Exception {
-        return null;
+    @Override
+    @Transactional
+    public Reservation save(Reservation model) throws Exception {
+        try {
+            model = reservationRepository.save(model);
+            return model;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 
+    @Override
+    @Transactional
     public boolean delete(Long id) throws Exception {
-        return false;
+        try {
+            if(reservationRepository.existsById(id)) {
+                reservationRepository.deleteById(id);
+                return true;
+            } else {
+                throw new Exception();
+            }
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
     }
 }
