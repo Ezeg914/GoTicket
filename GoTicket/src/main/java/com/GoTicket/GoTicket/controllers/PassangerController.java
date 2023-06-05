@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/passangers")
 public class PassangerController {
-    private PersonaService personaService;
+    private PassangerService passangerService;
 
     public PassangerController(PassangerService passangerService) {
         this.passangerService = passangerService;
