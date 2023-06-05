@@ -1,35 +1,34 @@
 package com.GoTicket.GoTicket.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.GoTicket.GoTicket.models.Trip;
+import com.GoTicket.GoTicket.services.TripService;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/v1/trips")
 public class TripController {
-    private TripServices tripServices;
+    private TripService tripService;
 
-    public TripController(TripServices tripServices) {
-        this.tripServices = tripServices;
+    public TripController(TripService tripServices) {
+        this.tripService = tripServices;
     }
 
-    @Getmapping("")
+    @GetMapping("")
     public ResponseEntity<?> getAll(){
         try {
-            return ResponseEntity.status(HttpStatus.ok).body(tripServices.findAll());
+            return ResponseEntity.status(HttpStatus.OK).body(tripService.findAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Please try again later.\"}");
         }
     }
 
-    @Getmapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(tripServices.findById(id));
+            return ResponseEntity.status(HttpStatus.OK).body(tripService.findById(id));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Please try again later.\"}");
         }
@@ -38,7 +37,7 @@ public class TripController {
     @PostMapping("")
     public ResponseEntity<?> save(@RequestBody Trip entity){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(tripServices.save(entity));
+            return ResponseEntity.status(HttpStatus.OK).body(tripService.save(entity));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Please try again later.\"}");
         }
@@ -47,7 +46,7 @@ public class TripController {
     @PutMapping("/{id}")
     public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Trip entity){
         try {
-            return ResponseEntity.status(HttpStatus.OK).body(tripServices.update(id, entity));
+            return ResponseEntity.status(HttpStatus.OK).body(tripService.update(id, entity));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{\"error\":\"Error. Please try again later.\"}");
         }

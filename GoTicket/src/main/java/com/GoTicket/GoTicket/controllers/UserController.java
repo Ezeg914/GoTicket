@@ -1,11 +1,12 @@
 package com.GoTicket.GoTicket.controllers;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import com.GoTicket.GoTicket.models.User;
+import com.GoTicket.GoTicket.services.UserServices;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 
 
 
@@ -19,16 +20,16 @@ public class UserController {
         this.userServices = userServices;
     }
 
-    @Getmapping("")
+    @GetMapping("")
     public ResponseEntity<?> getAll(){
         try {
-            return ResponseEntity.status(HttpStatus.ok).body(userServices.findAll());
+            return ResponseEntity.status(HttpStatus.OK).body(userServices.findAll());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{\"error\":\"Error. Please try again later.\"}");
         }
     }
 
-    @Getmapping("/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<?> getOne(@PathVariable Long id){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(userServices.findById(id));
