@@ -43,7 +43,7 @@ public class TripService implements BaseService<Trip>{
     @Trasactional
     public Trip save(Trip entity) throws Exception {
         try {
-            entity = tripRepository.save(entity);
+            entity = tripRepository.save(entity); //corregir
             return entity;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
