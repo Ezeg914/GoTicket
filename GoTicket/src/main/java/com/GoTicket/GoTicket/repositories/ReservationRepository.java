@@ -1,6 +1,6 @@
 package com.GoTicket.GoTicket.repositories;
 
-import com.GoTicket.GoTicket.models.Trip;
+import com.GoTicket.GoTicket.models.Reservation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

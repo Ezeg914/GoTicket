@@ -42,15 +42,27 @@ public class BusService implements BaseService<Bus>{
 
     @Override
     @Transactional
-    public Bus save(Bus entity) throws Exception {
+    public Bus save(Bus model) throws Exception {
         try{
-            entity = busRepository.save(entity);
-            return entity;
+            model = busRepository.save(model);
+            return model;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
+    @Override
+    @Transactional
+    public Bus update(Long id, Bus model) throws Exception {
+        try{
+            Optional<Bus> modelOptional = busRepository.findById(id);
+            Bus bus = modelOptional.get();
+            bus = busRepository.save(bus);
+            return bus;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
     @Override
     @Transactional
     public boolean delete(Long id) throws Exception {

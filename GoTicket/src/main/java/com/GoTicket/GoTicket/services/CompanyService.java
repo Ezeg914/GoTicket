@@ -3,10 +3,11 @@ package com.GoTicket.GoTicket.services;
 import com.GoTicket.GoTicket.models.Company;
 import com.GoTicket.GoTicket.repositories.CompanyRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Trasactional;
+//import javax.transaction.Transactional;
 
 @Service
 public class CompanyService implements BaseService<Company> {

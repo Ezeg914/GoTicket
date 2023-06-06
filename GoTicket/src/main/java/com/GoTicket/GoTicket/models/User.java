@@ -1,12 +1,11 @@
 package com.GoTicket.GoTicket.models;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import java.io.Serializable;
+import javax.persistence.*;
+import java.io.Serializable; // To be able to pass objects between activities
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

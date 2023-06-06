@@ -3,8 +3,9 @@ package com.GoTicket.GoTicket.services;
 import com.GoTicket.GoTicket.models.User;
 import com.GoTicket.GoTicket.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+//import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +66,7 @@ public class UserServices implements BaseService<User>{
 
     @Override
     @Transactional
-    public boolean deleteById(Long id) throws Exception {
+    public boolean delete(Long id) throws Exception {
         try {
             if(userRepository.existsById(id)) {
                 userRepository.deleteById(id);

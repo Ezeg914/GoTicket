@@ -3,9 +3,10 @@ package com.GoTicket.GoTicket.services;
 import com.GoTicket.GoTicket.models.Reservation;
 import com.GoTicket.GoTicket.repositories.ReservationRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 
-import javax.transaction.Transactional;
+//import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +48,19 @@ public class ReservationService implements BaseService<Reservation> {
         try {
             model = reservationRepository.save(model);
             return model;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
+
+    @Override
+    @Transactional
+    public Reservation update(Long id, Reservation model) throws Exception {
+        try {
+            Optional<Reservation> modelOptional = reservationRepository.findById(id);
+            Reservation reservation = modelOptional.get();
+            reservation = reservationRepository.save(reservation);
+            return reservation;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }

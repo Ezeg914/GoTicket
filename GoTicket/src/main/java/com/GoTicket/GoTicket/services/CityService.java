@@ -40,15 +40,27 @@ public class CityService  implements BaseService<City>{
 
     @Override
     @Transactional
-    public City save(City entity) throws Exception {
+    public City save(City model) throws Exception {
         try{
-            entity = cityRepository.save(entity);
-            return entity;
+            model = cityRepository.save(model);
+            return model;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
     }
 
+    @Override
+    @Transactional
+    public City update(Long id, City model) throws Exception {
+        try{
+            Optional<City> modelOptional = cityRepository.findById(id);
+            City city = modelOptional.get();
+            city = cityRepository.save(city);
+            return city;
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+    }
     @Override
     @Transactional
     public boolean delete(Long id) throws Exception {
