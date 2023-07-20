@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="65ef7b60-9c25-49e1-9a21-c9b737d3a156" name="Changes" comment="" />
+    <list default="true" id="65ef7b60-9c25-49e1-9a21-c9b737d3a156" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/prueba.txt" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -29,7 +32,7 @@
     &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;temurin-17&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/ezequiel/GoTicket&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/bruno/Escritorio/GoTicket&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -43,7 +46,7 @@
       <recent name="$PROJECT_DIR$/backend" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.GoTicketApplication">
+  <component name="RunManager" selected="Application.GoTicketApplication">
     <configuration name="GoTicketApplication" type="Application" factoryName="Application" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.Api.GoTicket.GoTicketApplication" />
       <module name="GoTicket" />
@@ -77,6 +80,11 @@
       <workItem from="1689712115542" duration="1951000" />
       <workItem from="1689714453608" duration="4494000" />
       <workItem from="1689862863604" duration="1099000" />
+      <workItem from="1689864649327" duration="26000" />
+      <workItem from="1689864700875" duration="571000" />
+      <workItem from="1689865297441" duration="45000" />
+      <workItem from="1689865353958" duration="204000" />
+      <workItem from="1689865582509" duration="89000" />
     </task>
     <servers />
   </component>
