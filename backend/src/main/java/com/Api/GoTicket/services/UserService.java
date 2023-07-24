@@ -34,7 +34,7 @@ public class UserService {
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
 
-        return user;
+        return userRepository.save(user);
     }
 
     public Boolean deleteById(Long id){
