@@ -5,6 +5,7 @@ import com.Api.GoTicket.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -13,9 +14,14 @@ public class CompanyController {
     @Autowired
     private CompanyService companyService;
 
-    @GetMapping
+    @PostMapping
     public CompanyModel saveCompany(@RequestBody CompanyModel company){
         return this.companyService.saveCompany(company);
+    }
+
+    @GetMapping
+    public ArrayList<CompanyModel> getCompany(){
+        return this.companyService.getCompany();
     }
 
     @GetMapping(path = "/{id}")
