@@ -24,11 +24,6 @@ public class ReservationModel {
     @JoinColumn(name = "user_id")
     private UserModel user;
 
-    @OneToOne
-    @JoinColumn(name = "passanger_id")
-    private PassangerModel passanger;
-
-
 
 
     //getters and setters
@@ -48,11 +43,6 @@ public class ReservationModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
-
-    @JsonIgnoreProperties({"reservation"})
-    public PassangerModel getPassanger(){return passanger;}
-
-    public void setPassanger(PassangerModel passanger){this.passanger = passanger;}
 
 
 }

@@ -19,6 +19,7 @@ public class BusModel {
 
     @ManyToOne
     @JoinColumn(name = "company_id")
+    @JsonBackReference
     private CompanyModel company;
 
     @OneToOne
@@ -43,7 +44,7 @@ public class BusModel {
         this.capacity = capacity;
     }
 
-    @JsonIgnoreProperties({"company"})
+
     public CompanyModel getCompany(){
         return company;
     }

@@ -23,6 +23,7 @@ public class TripModel {
 
     @ManyToOne
     @JoinColumn(name = "company")
+    @JsonBackReference
     private CompanyModel company;
 
 
@@ -66,7 +67,6 @@ public class TripModel {
         this.time = time;
     }
 
-    @JsonIgnoreProperties({"trips"})
     public CompanyModel getCompany(){
         return company;
     }
