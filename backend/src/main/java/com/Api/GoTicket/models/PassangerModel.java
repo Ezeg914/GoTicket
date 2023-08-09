@@ -1,6 +1,7 @@
 package com.Api.GoTicket.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,6 +17,10 @@ public class PassangerModel {
 
     @Column
     private String lastName;
+
+    @OneToOne
+    @JoinColumn(name = "reservation")
+    private ReservationModel reservation;
 
     public long getId(){
         return id;
@@ -40,5 +45,10 @@ public class PassangerModel {
     public void setLastName(String lastName){
         this.lastName = lastName;
     }
+
+    @JsonIgnoreProperties({"reservation"})
+    public ReservationModel getReservation(){return reservation;}
+
+    public void setReservation(ReservationModel reservation){this.reservation = reservation;}
 
 }

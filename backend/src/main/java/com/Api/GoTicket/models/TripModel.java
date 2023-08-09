@@ -1,6 +1,12 @@
 package com.Api.GoTicket.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "trip")
@@ -15,6 +21,26 @@ public class TripModel {
     @Column
     private String time;
 
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "company")
+    private CompanyModel company;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cityFromId")
+    private CityModel city_from;
+
+    @ManyToOne
+    @JoinColumn(name = "cityToId")
+    private CityModel city_to;
+
+    @OneToOne
+    @JsonManagedReference
+    @JoinColumn(name = "busId")
+    private BusModel bus;
+
+    // Getters and Setters
     public long getId(){
         return id;
     }
@@ -37,4 +63,24 @@ public class TripModel {
     public void setTime(String time){
         this.time = time;
     }
+
+    @JsonIgnoreProperties({"trips"})
+    public CompanyModel getCompany(){
+        return company;
+    }
+    public void setCompany(CompanyModel company){
+        this.company = company;
+    }
+
+    @JsonIgnoreProperties({"trip"})
+    public CityModel getCity_from() {return city_from;}
+    public void setCity_from(CityModel city_from) {this.city_from = city_from;}
+
+    @JsonIgnoreProperties({"trip"})
+    public CityModel getCity_to() {return city_to;}
+    public void setCity_to(CityModel city_to) {this.city_to = city_to;}
+
+    @JsonIgnoreProperties({"bus"})
+    public BusModel getBus() {return bus;}
+    public void setBus(BusModel bus) {this.bus = bus;}
 }
