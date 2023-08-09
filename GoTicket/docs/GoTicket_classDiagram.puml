@@ -1,0 +1,71 @@
+@startuml
+
+class Company {
+  +ID_Company: int
+  +name: String
+  +post(): 
+  +get(): 
+}
+class Bus {
+  +ID_Bus: int
+  +companyId: int
+  +capacity: int
+  +post():
+  +get():
+}
+
+class User {
+  +ID_User: int0
+  +name: String
+  +lastName: String
+  +email: String
+  +password: String
+  +post(): 
+  +get(): 
+  +logIn(): void
+  +logOut(): void
+}
+
+class Passanger {
+  +ID_Passenger: int
+  +name: String
+  +lastName: String
+  +post(): 
+  +get(): 
+  }
+
+class Trip {
+  +ID_Trip: int
+  +passanger_ID: int
+  +date: Date
+  +duration: Time
+  +post(): 
+  +get(): 
+}
+
+class City 
+{
+  +ID_City: int
+  +name: String
+  
+}
+
+class Reservation {
+    +ID_Ticket: int
+    +ID_Trip: int
+    +ID_User: int
+    +date: Date
+    +price: float
+      
+  }
+
+Company --> Bus
+Bus --> Trip
+Trip --> Passanger
+Passanger --> Reservation
+Reservation --> User
+Reservation --> Trip
+City --> Trip
+
+
+@enduml

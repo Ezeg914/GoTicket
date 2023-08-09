@@ -1,8 +1,0 @@
-.idea/
-*.iml
-*.ipr
-*.iws
-out/
-msql/
-src/main/resources/application.properties/
-```
