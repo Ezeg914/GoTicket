@@ -21,7 +21,6 @@ public class TripModel {
     @Column
     private String time;
 
-    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "company")
     private CompanyModel company;
@@ -36,9 +35,12 @@ public class TripModel {
     private CityModel city_to;
 
     @OneToOne
-    @JsonManagedReference
     @JoinColumn(name = "busId")
     private BusModel bus;
+
+    @OneToMany(mappedBy = "trip")
+    private List<PassangerModel> passangers = new ArrayList<>();
+
 
     // Getters and Setters
     public long getId(){
@@ -83,4 +85,8 @@ public class TripModel {
     @JsonIgnoreProperties({"bus"})
     public BusModel getBus() {return bus;}
     public void setBus(BusModel bus) {this.bus = bus;}
+
+    @JsonIgnoreProperties({"trip"})
+    public List<PassangerModel> getPassangers() {return passangers;}
+    public void setPassangers(List<PassangerModel> passangers) {this.passangers = passangers;}
 }
