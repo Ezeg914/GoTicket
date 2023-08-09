@@ -23,6 +23,7 @@ public class CompanyModel {
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<BusModel> buses = new ArrayList<BusModel>();
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
     private List<TripModel> trips = new ArrayList<TripModel>();
 

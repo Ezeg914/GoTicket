@@ -1,6 +1,7 @@
 package com.Api.GoTicket.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
@@ -20,6 +21,12 @@ public class BusModel {
     @JoinColumn(name = "company_id")
     private CompanyModel company;
 
+    @OneToOne
+    @JsonBackReference
+    @JoinColumn(name = "trip_id")
+    private TripModel trip;
+
+
     // Getters and Setters
     public long getId_bus() {
         return id_bus;
@@ -37,10 +44,18 @@ public class BusModel {
         this.capacity = capacity;
     }
 
+    @JsonIgnoreProperties({"company"})
     public CompanyModel getCompany(){
         return company;
     }
     public void setCompany(CompanyModel company){
         this.company = company;
+    }
+    @JsonIgnoreProperties({"trip"})
+    public TripModel getTrip(){
+        return trip;
+    }
+    public void setTrip(TripModel trip){
+        this.trip = trip;
     }
 }
