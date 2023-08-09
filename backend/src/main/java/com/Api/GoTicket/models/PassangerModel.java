@@ -12,15 +12,13 @@ public class PassangerModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column
-    private String name;
-
-    @Column
-    private String lastName;
-
     @OneToOne
     @JoinColumn(name = "reservation")
     private ReservationModel reservation;
+
+    @ManyToOne
+    @JoinColumn(name = "trip")
+    private TripModel trip;
 
     public long getId(){
         return id;
@@ -30,25 +28,15 @@ public class PassangerModel {
         this.id = id;
     }
 
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
 
     @JsonIgnoreProperties({"reservation"})
     public ReservationModel getReservation(){return reservation;}
 
     public void setReservation(ReservationModel reservation){this.reservation = reservation;}
+
+    @JsonIgnoreProperties({"trip"})
+    public TripModel getTrip(){return trip;}
+
+    public void setTrip(TripModel trip){this.trip = trip;}
 
 }

@@ -16,13 +16,12 @@ public class BusModel {
     @Column(nullable = false)
     private int capacity;
 
-    @JsonBackReference
+
     @ManyToOne
     @JoinColumn(name = "company_id")
     private CompanyModel company;
 
     @OneToOne
-    @JsonBackReference
     @JoinColumn(name = "trip_id")
     private TripModel trip;
 

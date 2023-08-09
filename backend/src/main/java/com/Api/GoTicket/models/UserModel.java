@@ -29,7 +29,6 @@ public class UserModel {
     @Column
     private String password;
 
-    @JsonBackReference
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<ReservationModel> reservations = new ArrayList<ReservationModel>();
 

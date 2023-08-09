@@ -19,10 +19,14 @@ public class ReservationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @JsonManagedReference
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
+
+    @OneToOne
+    @JoinColumn(name = "passanger_id")
+    private PassangerModel passanger;
 
 
 
@@ -44,6 +48,11 @@ public class ReservationModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
+
+    @JsonIgnoreProperties({"reservation"})
+    public PassangerModel getPassanger(){return passanger;}
+
+    public void setPassanger(PassangerModel passanger){this.passanger = passanger;}
 
 
 }
