@@ -40,6 +40,7 @@ public class TripModel {
     private BusModel bus;
 
     @OneToMany(mappedBy = "trip")
+    @JsonManagedReference
     private List<PassangerModel> passangers = new ArrayList<>();
 
 
@@ -74,19 +75,17 @@ public class TripModel {
         this.company = company;
     }
 
-    @JsonIgnoreProperties({"trip"})
     public CityModel getCity_from() {return city_from;}
     public void setCity_from(CityModel city_from) {this.city_from = city_from;}
 
-    @JsonIgnoreProperties({"trip"})
     public CityModel getCity_to() {return city_to;}
     public void setCity_to(CityModel city_to) {this.city_to = city_to;}
 
-    @JsonIgnoreProperties({"bus"})
+
     public BusModel getBus() {return bus;}
     public void setBus(BusModel bus) {this.bus = bus;}
 
-    @JsonIgnoreProperties({"trip"})
+
     public List<PassangerModel> getPassangers() {return passangers;}
     public void setPassangers(List<PassangerModel> passangers) {this.passangers = passangers;}
 }

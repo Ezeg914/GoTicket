@@ -22,6 +22,7 @@ public class ReservationModel {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private UserModel user;
 
 
@@ -35,7 +36,7 @@ public class ReservationModel {
         this.id = id;
     }
 
-    @JsonIgnoreProperties({"reservations"})
+
     public UserModel getUser() {
         return user;
     }

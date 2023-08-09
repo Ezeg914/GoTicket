@@ -30,6 +30,7 @@ public class UserModel {
     private String password;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<ReservationModel> reservations = new ArrayList<ReservationModel>();
 
     //getters and setters
@@ -73,7 +74,6 @@ public class UserModel {
         this.password = password;
     }
 
-    @JsonIgnoreProperties({"user"})
     public List<ReservationModel> getReservations(){
         return reservations;
     }
