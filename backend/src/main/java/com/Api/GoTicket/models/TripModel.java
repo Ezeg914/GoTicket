@@ -2,6 +2,10 @@ package com.Api.GoTicket.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "trip")
 public class TripModel {
@@ -15,6 +19,11 @@ public class TripModel {
     @Column
     private String time;
 
+    @ManyToOne
+    @JoinColumn(name = "company")
+    private CompanyModel company;
+
+    // Getters and Setters
     public long getId(){
         return id;
     }
@@ -36,5 +45,13 @@ public class TripModel {
 
     public void setTime(String time){
         this.time = time;
+    }
+
+    @JsonIgnoreProperties({"trips"})
+    public CompanyModel getCompany(){
+        return company;
+    }
+    public void setCompany(CompanyModel company){
+        this.company = company;
     }
 }

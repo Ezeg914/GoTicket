@@ -31,8 +31,7 @@ public class BusService {
         BusModel bus = busRepository.findById(id).get();
 
         bus.setCapacity(request.getCapacity());
-        bus.setCompany_id(request.getCompany_id());
-
+        bus.setCompany(request.getCompany());
         return busRepository.save(bus);
     }
 
