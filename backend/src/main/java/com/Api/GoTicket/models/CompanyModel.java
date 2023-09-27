@@ -19,10 +19,13 @@ public class CompanyModel {
     @Column
     private String name;
 
+
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<BusModel> buses = new ArrayList<BusModel>();
 
     @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<TripModel> trips = new ArrayList<TripModel>();
 
     // Getters and Setters
@@ -34,7 +37,6 @@ public class CompanyModel {
         this.id = id;
     }
 
-    @JsonIgnoreProperties({"company"})
     public List<BusModel> getBuses(){
         return buses;
     }
@@ -50,7 +52,7 @@ public class CompanyModel {
         this.name = name;
     }
 
-    @JsonIgnoreProperties({"company"})
+
     public List<TripModel> getTrips(){
         return trips;
     }

@@ -1,7 +1,13 @@
 package com.Api.GoTicket.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -23,6 +29,11 @@ public class UserModel {
     @Column
     private String password;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<ReservationModel> reservations = new ArrayList<ReservationModel>();
+
+    //getters and setters
     public long getId() {
         return id;
     }
@@ -61,5 +72,12 @@ public class UserModel {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<ReservationModel> getReservations(){
+        return reservations;
+    }
+    public void setReservations(List<ReservationModel> reservations){
+        this.reservations = reservations;
     }
 }
