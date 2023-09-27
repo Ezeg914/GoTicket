@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import com.Api.GoTicket.services.UserService;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,8 +17,11 @@ public class UserController {
         private UserService userService;
 
         @GetMapping
-        public ArrayList<UserModel> getUsers(){
-                return userService.getUsers();
+        public List<UserModel> getUsers(
+                @RequestParam(value = "name", required = false) String name,
+                @RequestParam(value = "lastName", required = false) String lastName,
+                @RequestParam(value = "email", required = false) String email) {
+                return userService.getUsersByFilters(name, lastName, email);
         }
 
         @PostMapping
