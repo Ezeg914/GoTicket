@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.Api.GoTicket.models.UserModel;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +18,11 @@ public class UserService {
     public ArrayList<UserModel> getUsers(){
         return (ArrayList<UserModel>) userRepository.findAll();
     }
+
+    public List<UserModel> getUsersByFilters(String name, String lastName, String email) {
+        return userRepository.findUsersByFilters(name, lastName, email);
+    }
+
 
     public UserModel saveUser(UserModel user){
         return userRepository.save(user);

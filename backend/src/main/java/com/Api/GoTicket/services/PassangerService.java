@@ -4,6 +4,8 @@ import com.Api.GoTicket.models.PassangerModel;
 import com.Api.GoTicket.repositories.IPassangerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -18,6 +20,8 @@ public class PassangerService {
         return (ArrayList<PassangerModel>) passangerRepository.findAll();
 
     }
+
+
 
     public PassangerModel savePassanger (PassangerModel passanger){
 

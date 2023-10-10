@@ -5,8 +5,12 @@ import com.Api.GoTicket.repositories.IBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.Api.GoTicket.models.BusModel;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,6 +21,15 @@ public class BusService {
 
     public ArrayList<BusModel> getBuses() {
         return (ArrayList<BusModel>) busRepository.findAll();
+    }
+
+
+    public Page<BusModel> getAllBuses(Pageable pageable) {
+        return busRepository.findAll(pageable);
+    }
+
+    public Page<BusModel> getBusesByCapacity(int capacity, Pageable pageable) {
+        return busRepository.findByCapacityEquals(capacity, pageable);
     }
 
     public BusModel saveBus(BusModel bus) {
