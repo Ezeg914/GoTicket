@@ -18,4 +18,8 @@ public interface IUserRepository extends JpaRepository<UserModel, Long> {
             @Param("name") String name,
             @Param("lastName") String lastName,
             @Param("email") String email);
+    UserModel findByEmailAndPassword(String email, String password);
+
+    UserModel findByEmail(String email);
+
 }
