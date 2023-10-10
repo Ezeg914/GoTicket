@@ -1,7 +1,10 @@
 package com.Api.GoTicket.controllers;
 
 import com.Api.GoTicket.models.UserModel;
+import com.Api.GoTicket.repositories.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.Api.GoTicket.services.UserService;
@@ -15,6 +18,9 @@ public class UserController {
 
         @Autowired
         private UserService userService;
+
+        @Autowired
+        private IUserRepository userRepository;
 
         @GetMapping
         public List<UserModel> getUsers(
@@ -48,4 +54,31 @@ public class UserController {
                         return "Error, we have a problem and can´t delete user with id" + id + " was not deleted";
                 }
         }
+
+        @PostMapping("/login")
+        public ResponseEntity<String> login(@RequestBody UserModel user) {
+                UserModel existingUser = userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
+
+                if (existingUser != null) {
+                        return ResponseEntity.ok("Inicio de sesión exitoso");
+                } else {
+                        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciales incorrectas");
+                }
+        }
+
+        @PostMapping("/register")
+        public ResponseEntity<String> register(@RequestBody UserModel user) {
+                UserModel existingUser = userRepository.findByEmail(user.getEmail());
+
+                if (existingUser != null) {
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("El correo electrónico ya está en uso");
+                }
+
+                userRepository.save(user);
+
+                return ResponseEntity.ok("Registro exitoso");
+        }
+
 }
+
+
