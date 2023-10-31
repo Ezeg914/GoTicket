@@ -29,9 +29,8 @@ public class UserModel {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<ReservationModel> reservations = new ArrayList<ReservationModel>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<ReservationModel> reservations;
 
     //getters and setters
     public long getId() {

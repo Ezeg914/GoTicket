@@ -1,14 +1,14 @@
 package com.Api.GoTicket.models;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "company")
 public class CompanyModel {
@@ -20,13 +20,11 @@ public class CompanyModel {
     private String name;
 
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<BusModel> buses = new ArrayList<BusModel>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BusModel> buses;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.ALL)
-    @JsonManagedReference
-    private List<TripModel> trips = new ArrayList<TripModel>();
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<TripModel> trips;
 
     // Getters and Setters
     public long getId(){
@@ -60,3 +58,4 @@ public class CompanyModel {
         this.trips = trips;
     }
 }
+

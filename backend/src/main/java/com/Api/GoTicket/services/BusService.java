@@ -1,9 +1,11 @@
 package com.Api.GoTicket.services;
 
 
+import com.Api.GoTicket.models.CompanyModel;
 import com.Api.GoTicket.repositories.IBusRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.Api.GoTicket.services.CompanyService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,6 +20,11 @@ public class BusService {
 
     @Autowired
     IBusRepository busRepository;
+    @Autowired
+    private CompanyService companyService;
+
+
+
 
     public ArrayList<BusModel> getBuses() {
         return (ArrayList<BusModel>) busRepository.findAll();
@@ -33,8 +40,15 @@ public class BusService {
     }
 
     public BusModel saveBus(BusModel bus) {
+        CompanyModel company = companyService.getById(bus.getCompany().getId()).orElse(null);
+        if (company != null) {
+            company.getBuses().add(bus);
+            bus.setCompany(company);
+        }
         return busRepository.save(bus);
     }
+
+
 
     public Optional<BusModel> getBusById(Long id) {
         return busRepository.findById(id);

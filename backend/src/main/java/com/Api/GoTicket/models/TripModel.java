@@ -1,13 +1,14 @@
 package com.Api.GoTicket.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "trip")
 public class TripModel {
@@ -22,8 +23,7 @@ public class TripModel {
     private String time;
 
     @ManyToOne
-    @JoinColumn(name = "company")
-    @JsonBackReference
+    @JoinColumn(name = "company", nullable = true)
     private CompanyModel company;
 
 
@@ -35,12 +35,10 @@ public class TripModel {
     @JoinColumn(name = "cityToId")
     private CityModel city_to;
 
-    @OneToOne
-    @JoinColumn(name = "busId")
+    @OneToOne(mappedBy = "trip")
     private BusModel bus;
 
     @OneToMany(mappedBy = "trip")
-    @JsonManagedReference
     private List<PassangerModel> passangers = new ArrayList<>();
 
 

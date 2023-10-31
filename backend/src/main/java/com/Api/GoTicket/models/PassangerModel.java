@@ -1,11 +1,11 @@
     package com.Api.GoTicket.models;
 
 
-    import com.fasterxml.jackson.annotation.JsonBackReference;
-    import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-    import com.fasterxml.jackson.annotation.JsonManagedReference;
+    import com.fasterxml.jackson.annotation.*;
     import jakarta.persistence.*;
-
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
     @Entity
     @Table (name = "passanger")
     public class PassangerModel {
@@ -14,14 +14,14 @@
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private long id;
 
+
         @OneToOne
         @JoinColumn(name = "reservation")
-        @JsonManagedReference
         private ReservationModel reservation;
+
 
         @ManyToOne
         @JoinColumn(name = "trip")
-        @JsonBackReference
         private TripModel trip;
 
         public long getId(){
