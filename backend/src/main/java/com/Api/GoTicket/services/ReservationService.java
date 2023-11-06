@@ -1,6 +1,6 @@
 package com.Api.GoTicket.services;
 
-
+import com.Api.GoTicket.models.UserModel;
 import com.Api.GoTicket.models.ReservationModel;
 import com.Api.GoTicket.repositories.IReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +17,9 @@ public class ReservationService {
     @Autowired
     IReservationRepository reservationRepository;
 
+    @Autowired
+    UserService userService;
+
     public ArrayList<ReservationModel> getReservation(){
         return (ArrayList<ReservationModel>) reservationRepository.findAll();
     }
@@ -24,9 +27,13 @@ public class ReservationService {
     public Page<ReservationModel> getReservationsByUserId(Long userId, Pageable pageable) {
         return reservationRepository.findByUserId(userId, pageable);
     }
-    public ReservationModel saveReservation(ReservationModel reservation){
+    public ReservationModel saveReservation(ReservationModel reservation, UserModel user) {
+        user.getReservations().add(reservation);
+        reservation.setUser(user);
         return reservationRepository.save(reservation);
     }
+
+
 
     public Optional<ReservationModel> getById(Long id){
         return reservationRepository.findById(id);

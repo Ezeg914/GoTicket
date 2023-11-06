@@ -5,6 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.Api.GoTicket.models.UserModel;
+
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +17,9 @@ public class UserService {
 
     @Autowired
     IUserRepository userRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public ArrayList<UserModel> getUsers(){
         return (ArrayList<UserModel>) userRepository.findAll();
@@ -51,4 +57,14 @@ public class UserService {
             return false;
         }
     }
+
+    public Object getUserByEmail(UserModel userModel){
+        String query = "FROM UserModel WHERE email = :email";
+        try {
+            return (Object)entityManager.createQuery(query).setParameter("email", userModel.getEmail()).getSingleResult();
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }
