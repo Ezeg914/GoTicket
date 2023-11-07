@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 @Transactional
 public interface IUserRepository extends JpaRepository<UserModel, Long> {
-
+    UserModel getUserByEmail(String email);
     UserModel save(UserModel model);
 
 

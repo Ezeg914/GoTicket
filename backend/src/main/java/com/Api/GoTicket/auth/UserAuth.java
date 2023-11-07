@@ -33,7 +33,6 @@ public class UserAuth {
         return null;
     }
 
-
     public ResponseUtil createToken(UserModel current_user) {
         if(current_user != null){
             String token = jwtUtil.create(String.valueOf(current_user.getId()), current_user.getEmail());

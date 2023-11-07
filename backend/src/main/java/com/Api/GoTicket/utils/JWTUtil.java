@@ -1,9 +1,6 @@
 package com.Api.GoTicket.utils;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtBuilder;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -56,23 +53,37 @@ public class JWTUtil {
         return builder.compact();
     }
 
-
     public String getValue(String jwt) {
-        // This line will throw an exception if it is not a signed JWS (as
-        // expected)
         Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
                 .parseClaimsJws(jwt).getBody();
 
         return claims.getSubject();
     }
 
-
     public String getKey(String jwt) {
-        // This line will throw an exception if it is not a signed JWS (as
-        // expected)
         Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key))
                 .parseClaimsJws(jwt).getBody();
 
         return claims.getId();
     }
+
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key)).parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            log.info("Expired or invalid JWT token");
+            return false;
+        }
+    }
+
+    public String getEmail(String token) {
+        Claims claims = Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key)).parseClaimsJws(token).getBody();
+        return claims.getSubject();
+    }
+
+    public Claims getClaims(String token) {
+        return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(key)).parseClaimsJws(token).getBody();
+    }
+
 }
