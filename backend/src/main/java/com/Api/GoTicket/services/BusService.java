@@ -50,6 +50,7 @@ public class BusService {
 
 
 
+
     public Optional<BusModel> getBusById(Long id) {
         return busRepository.findById(id);
     }
@@ -68,6 +69,37 @@ public class BusService {
             return true;
         } catch (Exception err){
             return false;
+        }
+    }
+    public BusModel savesBus(BusModel bus) {
+        // Establece los asientos disponibles a la capacidad cuando se crea un nuevo autobús
+        bus.setAsientosDisponibles(bus.getCapacity());
+        return busRepository.save(bus);
+    }
+    public BusModel reserveBus(long busId) {
+        BusModel bus = busRepository.findById(busId).orElse(null);
+
+        if (bus != null) {
+            reserveSeats(busId); // Utiliza el método reserveSeats del servicio BusService
+            return busRepository.save(bus); // Guarda el autobús actualizado
+        } else {
+            throw new RuntimeException("Autobús no encontrado");
+        }
+    }
+
+    public void reserveSeats(Long busId) {
+        BusModel bus = busRepository.findById(busId).orElse(null);
+
+        if (bus != null) {
+            int availableSeats = bus.getAsientosDisponibles();
+            if (availableSeats > 0) {
+                bus.setAsientosDisponibles(availableSeats - 1);
+            } else {
+                throw new RuntimeException("No hay suficientes asientos disponibles");
+            }
+            busRepository.save(bus); // Guarda el autobús actualizado
+        } else {
+            throw new RuntimeException("Autobús no encontrado");
         }
     }
 }

@@ -7,10 +7,6 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
-
 @Entity
 @Table(name = "reservation")
 public class ReservationModel {
@@ -19,14 +15,21 @@ public class ReservationModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private UserModel user;
 
+    @Column(nullable = false)
+    private long busId;
 
+    public long getBusId() {
+        return busId;
+    }
 
-    //getters and setters
+    public void setBusId(long busId) {
+        this.busId = busId;
+    }
+
     public long getId() {
         return id;
     }
@@ -35,7 +38,6 @@ public class ReservationModel {
         this.id = id;
     }
 
-
     public UserModel getUser() {
         return user;
     }
@@ -43,6 +45,5 @@ public class ReservationModel {
     public void setUser(UserModel user) {
         this.user = user;
     }
-
-
 }
+

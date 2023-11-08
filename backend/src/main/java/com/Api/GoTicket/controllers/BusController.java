@@ -45,6 +45,7 @@ public class BusController {
 
     @PostMapping
     public BusModel saveBus(@RequestBody BusModel bus) {
+        bus.setAsientosDisponibles(bus.getCapacity());
         return this.busService.saveBus(bus);
     }
 

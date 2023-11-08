@@ -28,10 +28,13 @@
     
         @Column
         private String password;
-    
+
         @OneToMany(cascade = CascadeType.ALL)
-        private List<ReservationModel> reservations;
-    
+        @JsonBackReference
+        private List<ReservationModel> reservations = new ArrayList<>();
+
+
+
         //getters and setters
         public long getId() {
             return id;
