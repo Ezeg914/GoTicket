@@ -31,12 +31,12 @@ public class TripController {
             @RequestParam(value = "page", defaultValue = "0") int page,
             @RequestParam(value = "size", defaultValue = "10") int size,
             @RequestParam(value = "sortBy", defaultValue = "id") String sortBy,
-            @RequestParam(value = "company", required = false) Long companyId,
-            @RequestParam(value = "cityFrom", required = false) Long cityFromId,
-            @RequestParam(value = "cityTo", required = false) Long cityToId
+            @RequestParam(value = "company", required = false) String companyName,
+            @RequestParam(value = "cityFrom", required = false) String cityFromName,
+            @RequestParam(value = "cityTo", required = false) String cityToName
     ) {
         Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy));
-        Page<TripModel> trips = tripRepository.findFilteredTrips(companyId, cityFromId, cityToId, pageable);
+        Page<TripModel> trips = tripRepository.findFilteredTrips(companyName, cityFromName, cityToName, pageable);
 
         return new ResponseEntity<>(trips, HttpStatus.OK);
     }
@@ -61,7 +61,7 @@ public class TripController {
             return "Trip with id:" + id + "was deleted";
 
         }else {
-            return "Error, we have a problem and can´t delete trip with id" + id + "was not deleted";
+            return "Error, we have a problem and canÂ´t delete trip with id" + id + "was not deleted";
         }
     }
 

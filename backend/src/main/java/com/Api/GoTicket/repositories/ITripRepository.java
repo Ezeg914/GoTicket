@@ -12,12 +12,12 @@ import com.Api.GoTicket.models.TripModel;
 public interface ITripRepository extends JpaRepository<TripModel, Long>{
 
     @Query("SELECT t FROM TripModel t " +
-            "WHERE (:companyId IS NULL OR t.company.id = :companyId) " +
-            "  AND (:cityFromId IS NULL OR t.city_from.id = :cityFromId) " +
-            "  AND (:cityToId IS NULL OR t.city_to.id = :cityToId)")
+            "WHERE (:companyName IS NULL OR t.company.name = :companyName) " +
+            "  AND (:cityFromName IS NULL OR t.city_from.name = :cityFromName) " +
+            "  AND (:cityToName IS NULL OR t.city_to.name = :cityToName)")
     Page<TripModel> findFilteredTrips(
-            @Param("companyId") Long companyId,
-            @Param("cityFromId") Long cityFromId,
-            @Param("cityToId") Long cityToId,
+            @Param("companyName") String companyName,
+            @Param("cityFromName") String cityFromName,
+            @Param("cityToName") String cityToName,
             Pageable pageable);
 }
