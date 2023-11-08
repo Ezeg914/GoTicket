@@ -1,21 +1,33 @@
 package com.Api.GoTicket.models;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id_bus")
 @Entity
 @Table(name = "bus")
 public class BusModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
+    @Column(nullable = false)
     private long id_bus;
 
-    @Column
+    @Column(nullable = false)
     private int capacity;
 
-    @Column
-    private int company_id;
 
+    @ManyToOne
+    @JoinColumn(name = "company_id")
+    private CompanyModel company;
+
+    @OneToOne
+    @JoinColumn(name = "trip_id")
+    private TripModel trip;
+
+
+    // Getters and Setters
     public long getId_bus() {
         return id_bus;
     }
@@ -32,11 +44,19 @@ public class BusModel {
         this.capacity = capacity;
     }
 
-    public int getCompany_id() {
-        return company_id;
+
+    public CompanyModel getCompany(){
+        return company;
+    }
+    public void setCompany(CompanyModel company){
+        this.company = company;
+    }
+    public TripModel getTrip(){
+        return trip;
+    }
+    public void setTrip(TripModel trip){
+        this.trip = trip;
     }
 
-    public void setCompany_id(int company_id) {
-        this.company_id = company_id;
-    }
+
 }

@@ -1,44 +1,44 @@
-package com.Api.GoTicket.models;
+    package com.Api.GoTicket.models;
 
 
-import jakarta.persistence.*;
+    import com.fasterxml.jackson.annotation.*;
+    import jakarta.persistence.*;
+    @JsonIdentityInfo(
+            generator = ObjectIdGenerators.PropertyGenerator.class,
+            property = "id")
+    @Entity
+    @Table (name = "passanger")
+    public class PassangerModel {
 
-@Entity
-@Table (name = "passanger")
-public class PassangerModel {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
-    @Column
-    private String name;
+        @OneToOne
+        @JoinColumn(name = "reservation")
+        private ReservationModel reservation;
 
-    @Column
-    private String lastName;
 
-    public long getId(){
-        return id;
+        @ManyToOne
+        @JoinColumn(name = "trip")
+        private TripModel trip;
+
+        public long getId(){
+            return id;
+        }
+
+        public void setId(long id){
+            this.id = id;
+        }
+
+
+        public ReservationModel getReservation(){return reservation;}
+
+        public void setReservation(ReservationModel reservation){this.reservation = reservation;}
+
+        public TripModel getTrip(){return trip;}
+
+        public void setTrip(TripModel trip){this.trip = trip;}
+
     }
-
-    public void setId(long id){
-        this.id = id;
-    }
-
-    public String getName(){
-        return name;
-    }
-
-    public void setName(String name){
-        this.name = name;
-    }
-
-    public String getLastName(){
-        return lastName;
-    }
-
-    public void setLastName(String lastName){
-        this.lastName = lastName;
-    }
-
-}

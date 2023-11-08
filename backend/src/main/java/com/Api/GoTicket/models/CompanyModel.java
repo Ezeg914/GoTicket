@@ -1,8 +1,14 @@
 package com.Api.GoTicket.models;
 
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "company")
 public class CompanyModel {
@@ -13,6 +19,14 @@ public class CompanyModel {
     @Column
     private String name;
 
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<BusModel> buses;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<TripModel> trips;
+
+    // Getters and Setters
     public long getId(){
         return id;
     }
@@ -21,6 +35,13 @@ public class CompanyModel {
         this.id = id;
     }
 
+    public List<BusModel> getBuses(){
+        return buses;
+    }
+
+    public void setBuses(List<BusModel> buses){
+        this.buses = buses;
+    }
     public String getName(){
         return name;
     }
@@ -29,4 +50,12 @@ public class CompanyModel {
         this.name = name;
     }
 
+
+    public List<TripModel> getTrips(){
+        return trips;
+    }
+    public void setTrips(List<TripModel> trips){
+        this.trips = trips;
+    }
 }
+

@@ -5,7 +5,12 @@ import com.Api.GoTicket.models.PassangerModel;
 import com.Api.GoTicket.services.PassangerService;
 import org.hibernate.boot.model.source.internal.hbm.AttributesHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -20,6 +25,7 @@ public class PassangerController {
     public ArrayList<PassangerModel> getPassangers(){
         return passangerService.getPassangers();
     }
+
 
     @PostMapping
     public PassangerModel savePassanger(@RequestBody PassangerModel passanger){

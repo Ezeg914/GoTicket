@@ -1,7 +1,14 @@
 package com.Api.GoTicket.models;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id")
 @Entity
 @Table(name = "trip")
 public class TripModel {
@@ -15,6 +22,27 @@ public class TripModel {
     @Column
     private String time;
 
+    @ManyToOne
+    @JoinColumn(name = "company", nullable = true)
+    private CompanyModel company;
+
+
+    @ManyToOne
+    @JoinColumn(name = "cityFromId")
+    private CityModel city_from;
+
+    @ManyToOne
+    @JoinColumn(name = "cityToId")
+    private CityModel city_to;
+
+    @OneToOne(mappedBy = "trip")
+    private BusModel bus;
+
+    @OneToMany(mappedBy = "trip")
+    private List<PassangerModel> passangers = new ArrayList<>();
+
+
+    // Getters and Setters
     public long getId(){
         return id;
     }
@@ -37,4 +65,25 @@ public class TripModel {
     public void setTime(String time){
         this.time = time;
     }
+
+    public CompanyModel getCompany(){
+        return company;
+    }
+    public void setCompany(CompanyModel company){
+        this.company = company;
+    }
+
+    public CityModel getCity_from() {return city_from;}
+    public void setCity_from(CityModel city_from) {this.city_from = city_from;}
+
+    public CityModel getCity_to() {return city_to;}
+    public void setCity_to(CityModel city_to) {this.city_to = city_to;}
+
+
+    public BusModel getBus() {return bus;}
+    public void setBus(BusModel bus) {this.bus = bus;}
+
+
+    public List<PassangerModel> getPassangers() {return passangers;}
+    public void setPassangers(List<PassangerModel> passangers) {this.passangers = passangers;}
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -17,6 +20,14 @@ public class CompanyService {
 
     public ArrayList<CompanyModel>getCompany(){
         return (ArrayList<CompanyModel>) companyRepository.findAll();
+    }
+
+    public Page<CompanyModel> getAllCompanies(Pageable pageable) {
+        return companyRepository.findAll(pageable);
+    }
+
+    public Page<CompanyModel> getCompaniesByName(String name, Pageable pageable) {
+        return companyRepository.findByName(name, pageable);
     }
 
     public CompanyModel saveCompany(CompanyModel company){
