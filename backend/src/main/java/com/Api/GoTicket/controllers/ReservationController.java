@@ -50,7 +50,9 @@ public class ReservationController {
             BusModel bus = busService.getBusById(busId).orElse(null);
             if (bus != null) {
                 reserva.setBusId(busId);
-                return busService.reserveBus(busId); // Cambiado el método para pasar el busId
+                busService.reserveBus(busId);
+                reservationService.savesReservation(reserva, user); // Guarda la reserva
+                return bus;
             }
         }
 

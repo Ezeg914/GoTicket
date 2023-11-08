@@ -36,7 +36,7 @@ public class ReservationService {
     public Page<ReservationModel> getReservationsByUserId(Long userId, Pageable pageable) {
         return reservationRepository.findByUserId(userId, pageable);
     }
-    public ReservationModel savesssReservation(ReservationModel reservation, UserModel user) {
+    public ReservationModel savesReservation(ReservationModel reservation, UserModel user) {
         user.getReservations().add(reservation);
         reservation.setUser(user);
         return reservationRepository.save(reservation);
