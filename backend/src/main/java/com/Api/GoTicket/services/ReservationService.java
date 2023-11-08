@@ -2,6 +2,8 @@ package com.Api.GoTicket.services;
 
 import com.Api.GoTicket.models.UserModel;
 import com.Api.GoTicket.models.ReservationModel;
+import com.Api.GoTicket.models.BusModel;
+import com.Api.GoTicket.repositories.IBusRepository;
 import com.Api.GoTicket.repositories.IReservationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,13 @@ public class ReservationService {
     IReservationRepository reservationRepository;
 
     @Autowired
+    IBusRepository busRepository;
+
+
+    @Autowired
+    BusService busService;
+
+    @Autowired
     UserService userService;
 
     public ArrayList<ReservationModel> getReservation(){
@@ -27,7 +36,7 @@ public class ReservationService {
     public Page<ReservationModel> getReservationsByUserId(Long userId, Pageable pageable) {
         return reservationRepository.findByUserId(userId, pageable);
     }
-    public ReservationModel saveReservation(ReservationModel reservation, UserModel user) {
+    public ReservationModel savesssReservation(ReservationModel reservation, UserModel user) {
         user.getReservations().add(reservation);
         reservation.setUser(user);
         return reservationRepository.save(reservation);
@@ -48,5 +57,9 @@ public class ReservationService {
         }
 
     }
+
+    //
+
+
 
 }

@@ -3,6 +3,8 @@ package com.Api.GoTicket.models;
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @JsonIdentityInfo(
         generator = ObjectIdGenerators.PropertyGenerator.class,
         property = "id_bus")
@@ -19,6 +21,11 @@ public class BusModel {
 
 
     @ManyToOne
+    @JoinColumn(name = "bus_id")
+    private BusModel bus;
+
+
+    @ManyToOne
     @JoinColumn(name = "company_id")
     private CompanyModel company;
 
@@ -26,6 +33,18 @@ public class BusModel {
     @JoinColumn(name = "trip_id")
     private TripModel trip;
 
+    // Agrega este campo a BusModel
+    @Column(nullable = false)
+    private int asientosDisponibles;
+
+    // Agrega getter y setter para asientosDisponibles
+    public int getAsientosDisponibles() {
+        return asientosDisponibles;
+    }
+
+    public void setAsientosDisponibles(int asientosDisponibles) {
+        this.asientosDisponibles = asientosDisponibles;
+    }
 
     // Getters and Setters
     public long getId_bus() {
@@ -57,6 +76,5 @@ public class BusModel {
     public void setTrip(TripModel trip){
         this.trip = trip;
     }
-
 
 }
