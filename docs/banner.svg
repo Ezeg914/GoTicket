@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 220" width="360" height="220" role="img" aria-labelledby="t">
+  <title id="t">GoTicket</title>
+  <defs>
+    <style>
+      .sans { font-family: "Segoe UI", -apple-system, BlinkMacSystemFont, Helvetica, Arial, sans-serif; }
+    </style>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#121C33"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#8B5CF6" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+    <clipPath id="frame"><rect width="360" height="220" rx="16"/></clipPath>
+  </defs>
+
+  <g clip-path="url(#frame)">
+    <rect width="360" height="220" fill="url(#bg)"/>
+    <circle cx="120" cy="76" r="130" fill="url(#glow)"/>
+  </g>
+  <rect x="0.75" y="0.75" width="358.5" height="218.5" rx="15.5" fill="none" stroke="#24314F" stroke-width="1.5"/>
+
+  <!-- Pasaje con talón troquelado -->
+  <path d="M52 28 H238 A10 10 0 0 0 258 28 H308 A10 10 0 0 1 318 38 V118 A10 10 0 0 1 308 128 H258 A10 10 0 0 0 238 128 H52 A10 10 0 0 1 42 118 V38 A10 10 0 0 1 52 28 Z"
+        fill="#16213A" stroke="#33436A" stroke-width="1.5"/>
+  <line x1="248" y1="44" x2="248" y2="112" stroke="#33436A" stroke-width="1.5" stroke-dasharray="4 5" stroke-linecap="round"/>
+
+  <!-- Recorrido -->
+  <line x1="72" y1="64" x2="212" y2="64" stroke="#3A4A6D" stroke-width="2" stroke-dasharray="3 7" stroke-linecap="round"/>
+  <circle cx="72" cy="64" r="7" fill="#16213A" stroke="#8B5CF6" stroke-width="2.6"/>
+  <circle cx="212" cy="64" r="7" fill="#8B5CF6"/>
+  <circle cy="64" r="4.5" fill="#C4B5FD">
+    <animate attributeName="cx" dur="3s" repeatCount="indefinite" values="82;202" calcMode="spline" keyTimes="0;1" keySplines="0.4 0 0.6 1"/>
+    <animate attributeName="opacity" dur="3s" repeatCount="indefinite" values="0;1;1;0" keyTimes="0;0.12;0.88;1"/>
+  </circle>
+  <rect x="64" y="90" width="54" height="7" rx="3.5" fill="#33436A"/>
+  <rect x="64" y="104" width="34" height="6" rx="3" fill="#27365A"/>
+  <rect x="166" y="90" width="54" height="7" rx="3.5" fill="#33436A"/>
+  <rect x="186" y="104" width="34" height="6" rx="3" fill="#27365A"/>
+
+  <!-- Código de barras -->
+  <g fill="#8B9AB5">
+    <rect x="264" y="50" width="3" height="56"/><rect x="270" y="50" width="1.5" height="56"/>
+    <rect x="274" y="50" width="4" height="56"/><rect x="281" y="50" width="1.5" height="56"/>
+    <rect x="285" y="50" width="2.5" height="56"/><rect x="290" y="50" width="4" height="56"/>
+    <rect x="297" y="50" width="1.5" height="56"/><rect x="301" y="50" width="3" height="56"/>
+  </g>
+
+  <rect x="24" y="152" width="30" height="4" rx="2" fill="#8B5CF6"/>
+  <text class="sans" x="23" y="192" font-size="30" font-weight="700" fill="#E6EDF7">GoTicket</text>
+</svg>
